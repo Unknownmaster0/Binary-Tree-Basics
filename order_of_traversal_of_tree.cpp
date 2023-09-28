@@ -2,7 +2,6 @@
 #include <queue>
 using namespace std;
 
-/* 2nd approach of the " Level order traversal or Breadth first Search ". */
 class Node
 {
 public:
@@ -124,6 +123,7 @@ int main()
     Node *root = NULL;
 
     root = buildTree(root);
+    cout << "printing the data in the level order traversal." << endl;
     LevelOrder(root);
     cout << "Printing the data of the Inorder traversal." << endl;
     Inorder(root);
