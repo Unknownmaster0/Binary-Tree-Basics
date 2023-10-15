@@ -50,7 +50,7 @@ Node *buildTree(Node *root)
     // finally return the root
     return root;
 }
-
+/*
 // Function to Breadth first search of the Binary tree.
 // Now using the separator to print the Binary tree in tree format
 void LevelOrder(Node *root)
@@ -94,6 +94,49 @@ void LevelOrder(Node *root)
             
     }
 }
+*/
+
+// Time complexity -> O(N) where n is the number of nodes
+// Space complexity -> O(N) where n is the number of nodes in case when all the nodes are in same straight line.
+vector<vector<int>> LevelOrder(Node* root)
+{
+    vector<vector<int> > ans;
+    if(root == NULL)    return ans;
+
+    queue<Node * > q;
+    q.push(root);
+
+    while (!q.empty())
+    {
+        int size = q.size();
+        vector<int> level;
+        for(int i = 0; i<size; i++)
+        {
+            Node* temp = q.front();
+            q.pop();
+
+            level.push_back(temp->data);
+            if(temp->left)
+                q.push(temp->left);
+            if(temp->right)
+                q.push(temp->right);
+        }
+
+        ans.push_back(level);
+    }
+    return ans;
+}
+
+void print(vector<vector<int> >  arr)
+{
+    for(int i = 0; i<arr.size(); i++)
+    {
+        for(int j = 0; j<arr[i].size(); j++)
+            cout<<arr[i][j]<<" ";
+
+        cout<<endl;
+    }
+}
 
 int main()
 {
@@ -101,7 +144,7 @@ int main()
     Node *root = NULL;
 
     root = buildTree(root);
-    LevelOrder(root);
-
+    vector<vector<int>> arr = LevelOrder(root);
+    print(arr);
     return 0;
 }
