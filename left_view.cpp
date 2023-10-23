@@ -20,6 +20,7 @@ class Node
     }
 };
 
+/*
 vector<int> leftView(Node *root)
 {
    // we need to do the mapping of the level with the node->data.
@@ -58,6 +59,22 @@ vector<int> leftView(Node *root)
         ans.push_back(i.second);
         
     return ans;
+}
+*/
+
+// left view using the recursion
+void leftView(Node* root, int level, vector<int>& ans)
+{
+    if(root == NULL)
+        return;
+
+    if(level == ans.size())
+        ans.push_back(root->data);
+
+// go to left of the root
+    leftView(root->left, level+1, ans);
+// go to the right of the root.
+    leftView(root->right, level+1, ans);
 }
 
 int main()
