@@ -38,14 +38,13 @@ void MorrisTraversal(Node* root)
             while(previous != NULL && previous -> right != current)
                 previous = previous->right;
 
-            // make the link from the previous to the current node.
+            // if previous right is null -: it means we need to point the predessor or previour to the current elements.
             if(previous -> right == NULL){
                 previous -> right = current;
                 current = current -> left;
             }
 
-            // remove the made link from the previous to the current.
-
+            // if the previous right is already pointing to the current element -: then simply remove the made link
             else{
                 previous -> right = NULL;
                 cout<<current->data<<" ";
